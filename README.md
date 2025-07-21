@@ -33,21 +33,21 @@ We provide the scripts to run all benchmarks under the folder `./scripts/`. For 
 ## Main Results (i.e. Table 1 in the paper)
 
 ```
-bash ./run_all.sh
+bash ./tools/run_all.sh
 ```
 or you can run individual dataset-forecast length experiments as:
 
 ```
 # Args are: datasets, seed, pred_len_idx
 # O refers to 48, 1 refers to 96 and so on
-bash quick_test.sh ETTh1 2021 0
+bash ./tools/quick_test_tsf.sh ETTh1 2021 0
 ```
 To modify params change the command-line args in the actual scripts within the `./scripts/long_term_forecast` directory.
 
 
 ## Short-term Forecasting (M4 i.e. Table 5)
 ```
-bash quick_test_m4.sh
+bash ./tools/quick_test_m4.sh
 ```
 
 To modify params change the command-line args in the actual scripts within the `./scripts/short_term_forecast` directory.
