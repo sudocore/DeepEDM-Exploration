@@ -50,9 +50,6 @@ def adjust_learning_rate(optimizer, epoch, args):
     elif args.lradj == "cosine":
         lr_adjust = {epoch: args.learning_rate /2 * (1 + math.cos(epoch / args.train_epochs * math.pi))}
     elif args.lradj == "custom":
-        # if epoch < 4:
-        #     return
-        # else:
         for param_group in optimizer.param_groups:
             curr_lr = param_group['lr']
             new_lr = max(curr_lr * args.opt['reduce_lr_factor'],  args.opt['min_lr'])
@@ -170,9 +167,6 @@ def tdt_loss(y_pred: torch.Tensor, y_true: torch.Tensor) -> torch.Tensor:
     # Adaptive Weight (ρ)
     sign_diff = torch.sign(dt_true) != torch.sign(dt_pred)
     rho = torch.mean(sign_diff.float())
-
-    # # TDT Loss
-    # loss = rho * LY + (1 - rho) * LD
 
     return rho, LD
 

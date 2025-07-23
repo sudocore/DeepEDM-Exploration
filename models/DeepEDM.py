@@ -104,19 +104,11 @@ class EDM(nn.Module):
 
 
         if A is None and W is None:
-            #when we use scaled dot product attention or sparse topk, we get the predictions directly
+            # When we use scaled dot product attention or sparse topk, we get the predictions directly
             return b, None
-
-        B, D, F, topk, delay = b.size()
-
-        if self.method == 'smap':
-            pred, sol = self._smap_solve(A, b, focal_point)
-        elif self.method == 'simplex':
-            pred, sol = self._simplex_solve(b, W)
-            sol = None
-
-        return pred, sol
-
+        else:
+            raise NotImplementedError("Only scaled dot product attention is implemented for EDM.")
+        
     def forward(self, X, focal_points):
 
         X = torch.cat([X, focal_points], dim=-1)
